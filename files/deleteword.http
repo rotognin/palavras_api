@@ -1,0 +1,1 @@
+DELETE http://localhost:8000/api/excluir/arroz HTTP/1.1

@@ -1,0 +1,10 @@
+POST http://localhost:8000/api/adicionar HTTP/1.1
+Content-Type: application/json
+
+{
+    "palavra": "violao",
+    "tipo": "instrumento musical",
+    "local": "casa"
+}
+
+

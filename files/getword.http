@@ -1,0 +1,1 @@
+GET http://localhost:8000/api/palavra/arroz HTTP/1.1
