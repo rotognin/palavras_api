@@ -27,11 +27,15 @@ class PalavraController extends Controller
 
         $palavra_obj = Palavra::where('status', 1)->skip($sorteio)->take(1)->get();
         $palavra = $palavra_obj[0]->palavra;
+        $tipo = $palavra_obj[0]->tipo;
+        $local = $palavra_obj[0]->local;
 
         $json = array(
             'resultado' => 'OK',
             'palavra' => $palavra,
-            'letras' => strlen($palavra)
+            'letras' => strlen($palavra),
+            'tipo' => $tipo,
+            'local' => $local
         );
 
         return response()->json(json_encode($json), 200);
@@ -42,9 +46,20 @@ class PalavraController extends Controller
         $palavra_obj = Palavra::where('palavra', $palavra)->first();
 
         if ($palavra_obj){
+            if ($palavra_obj->status == 0) {
+                $json = array(
+                    'palavra' => $palavra_obj->palavra,
+                    'mensagem' => 'Palavra inativa no cadastro'
+                );
+
+                return response()->json(json_encode($json));
+            }
+
             $json = array(
                 'palavra' => $palavra_obj->palavra,
-                'letras' => $palavra_obj->letras
+                'letras' => $palavra_obj->letras,
+                'tipo' => $palavra_obj->tipo,
+                'local' => $palavra_obj->local
             );
         } else {
             $json = array(

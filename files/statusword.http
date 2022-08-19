@@ -1,1 +1,1 @@
-PUT http://localhost:8000/api/ativar/macarrao HTTP/1.1
+PUT http://localhost:8000/api/inativar/macarrao HTTP/1.1
