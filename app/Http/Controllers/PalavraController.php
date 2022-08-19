@@ -5,12 +5,28 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Palavra;
 use App\Http\Controllers\InfoController as Info;
+use App\Models\Info as InfoModel;
 
 class PalavraController extends Controller
 {
     public function aleatoria()
     {
-        $palavra = 'aprender';
+        $info = InfoModel::find(1);
+        
+        if ($info->palavras_ativas == 0){
+            $json = array(
+                'resultado' => 'ERRO',
+                'mensagem' => 'Não existem palavras disponíveis'
+            );
+
+            return response()->json(json_encode($json), 200);
+        }
+
+        $maximo = $info->palavras_ativas - 1;
+        $sorteio = rand(0, $maximo);
+
+        $palavra_obj = Palavra::where('status', 1)->skip($sorteio)->take(1)->get();
+        $palavra = $palavra_obj[0]->palavra;
 
         $json = array(
             'resultado' => 'OK',
