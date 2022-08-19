@@ -25,7 +25,7 @@ Para cadastrar uma palavra, é necessário acessar a rota <i>POST /api/adicionar
 }
 ```
 
-<b>Importante:</b> a palavra será cadastrada com caracteres minúsculos e não poderá ter espaço. É permitido letras de "a" a "z" e o hífen "-".
+<b>Importante:</b> a palavra será cadastrada com caracteres minúsculos e não poderá ter espaço. São aceitas as letras de "a" a "z" e o hífen "-".
 
 # Detalhes técnicos
 
